@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { routerTransition } from '../../router.animations';
 import { AternityService } from '../../services/aternity-service'; 
+/* import { ToasterService } from '../../angular2-toaster/angular2-toaster';
+import { SlimLoadingBarService } from 'ng2-slim-loading-bar'; **/
 
 @Component({
     selector: 'app-charts',
@@ -15,9 +17,11 @@ export class ChartsComponent implements OnInit {
     public values: any[];
 
     constructor(aternityService: AternityService) {
-
+        this.message = 'Hello from charts constructor';
     }
 
+
+    public aternityService: AternityService;
 
     // bar chart
     public barChartOptions: any = {
@@ -177,9 +181,25 @@ export class ChartsComponent implements OnInit {
          */
     }
 
-   
-
     ngOnInit() {
 
+       /* this._slimLoadingBarService.start();
+
+        this.aternityService
+            .getAll<any[]>()
+            .subscribe((data: any[]) => this.values = data,
+            error => () => {
+                this._toasterService.pop('error', 'Damn', 'Something went wrong...');
+            },
+            () => {
+                this._toasterService.pop('success', 'Complete', 'Getting all values complete');
+                this._slimLoadingBarService.complete();
+            });
+
+            this.aternityService
+            .getAll<MyTypedItem[]>()
+            .subscribe((data: MyTypedItem[]) => this.values = data,
+        } **/
     }
+
 }
