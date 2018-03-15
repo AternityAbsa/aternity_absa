@@ -14,7 +14,7 @@ export class AternityService {
         private actionUrl: string;
 
    constructor(private http1: Http, private http: HttpClient, private _configuration: AternityApi) {
-        this.actionUrl = _configuration.ServerWithApiUrl + 'values/';
+        this.actionUrl = _configuration.ServerWithApiUrl + _configuration.ApiUrl;
    }
  
   /* data: any = null;

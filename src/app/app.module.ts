@@ -10,7 +10,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
 import { AternityService } from './services/aternity-service'; 
-/*/import { AternityProvider } from '../providers/aternity_api'; **/
+import { AternityProvider } from '../providers/aternity_api'; 
+import { AternityApi } from './models/aternity-api';
 
 // AoT requires an exported function for factories
 export function createTranslateLoader(http: HttpClient) {
@@ -38,7 +39,8 @@ export function createTranslateLoader(http: HttpClient) {
     declarations: [AppComponent],
     providers: [
          AuthGuard, 
-         AternityService
+         AternityService,
+         AternityApi
          ],
     bootstrap: [AppComponent]
 })

@@ -74,5 +74,20 @@
                 </div>
             </div>
         </div>
+
+        <div class="col col-sm-6">
+            <div class="card mb-3">
+                <div class="card-header">
+        <ul>  
+            <li *ngFor="let d of data | async">  
+              <span>  
+                  {{d}}  
+              </span>  
+            </li>  
+          </ul>  
+        </div>
+    </div>
+</div>
+
     </div>
 </div>
