@@ -1,4 +1,5 @@
 import { ChartsModule } from './charts.module';
+import { Http } from '@angular/http';
 
 describe('ChartsModule', () => {
     let chartsModule: ChartsModule;

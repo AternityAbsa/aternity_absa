@@ -1,112 +1,210 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { routerTransition } from '../../router.animations';
-import { AternityService } from '../../services/aternity-service'; 
-/* import { ToasterService } from '../../angular2-toaster/angular2-toaster';
-import { SlimLoadingBarService } from 'ng2-slim-loading-bar'; **/
+import {BlueprismService} from '../../services/BlueprismService';
+import { DataLoadService } from '../../services/DataLoadService';
+import 'rxjs/add/operator/map';
+import { BlueprismModel } from '../../models/BlueprismModel';
+import { Observable } from 'rxjs/Observable'; 
+import { error } from 'util';
+import { BlueprismServices } from '../blueprism-servers/blueprism.service';
+import {OdataLabels}  from '../../models/OdataLabels';
+
 
 @Component({
     selector: 'app-charts',
     templateUrl: './charts.component.html',
     styleUrls: ['./charts.component.scss'],
-    animations: [routerTransition()]
+    animations: [routerTransition()],
+    providers:[BlueprismServices]
 })
 export class ChartsComponent implements OnInit {
+  
+    dataArray : any[] = [];
+    private robot : string;
+    private application: BlueprismModel;
+    @Output()  applications: BlueprismModel[]; 
+    public machine_name: string;
+    errorMessage : "Invalid Data";
+    item : any[];
+    dateString : Date;
+    device_name : string;
+    sample = [];
 
-
-    public message: string;
-    public values: any[];
-
-    constructor(aternityService: AternityService) {
-        this.message = 'Hello from charts constructor';
+    constructor(private blueprismService: BlueprismService, private service: BlueprismServices, private dataLoad: DataLoadService,
+    private odate_lables: OdataLabels) {
     }
 
+    ngOnInit(){
+        this.loadApplications();
+    }
 
-    public aternityService: AternityService;
+    loadApplications(){
+        var physical_memory : any;
+
+   /*  this.dataLoad.ApiCall().subscribe(
+        blue_applications => {
+            this.application = blue_applications; 
+            this.dataArray = this.application;
+        }, 
+        err => {
+          console.log(err);
+        }
+     ); **/
+
+
+         this.blueprismService.getBlueprismData().subscribe(
+            blue_applications => {
+            /* this.application = blue_applications; **/
+
+            let physical_memory = blue_applications['value'].map(blue_applications => blue_applications.PHYSICAL_MEMORY_UTIL_AVG);
+            let blueBlueRobots = blue_applications['value'].map(blue_applications => blue_applications.SERVING_DEVICE_NAME);
+            let cpu_util_avg = blue_applications['value'].map(blue_applications => blue_applications.CPU_UTILIZATION_AVG);
+            let disk_queue_length = blue_applications['value'].map(blue_applications => blue_applications.DISK_QUEUE_LENGTH_MAX);
+           
+            let username = blue_applications['value'].map(blue_applications => blue_applications.USERNAME);
+            let virtual_memory = blue_applications['value'].map(blue_applications => blue_applications.VIRTUAL_MEMORY_UTIL_AVG);
+            let network_read_avg = blue_applications['value'].map(blue_applications => blue_applications.NETWORK_READ_AVG);
+            let network_write_avg = blue_applications['value'].map(blue_applications => blue_applications.NETWORK_WRITE_AVG);
+            let HOUR_RUNNING_TOTAL = blue_applications['value'].map(blue_applications => blue_applications.HOUR_RUNNING_TOTAL);
+            let DISK_IO_READ_AVG = blue_applications['value'].map(blue_applications => blue_applications.DISK_IO_READ_AVG);
+            let DISK_IO_WRITE_AVG = blue_applications['value'].map(blue_applications => blue_applications.DISK_IO_WRITE_AVG);
+            let SERVING_DEVICE_NAME = blue_applications['value'].map(blue_applications => blue_applications.SERVING_DEVICE_NAME);
+            
+            console.log(blue_applications);
+           /* console.log(cpu_util_avg);    
+            console.log(disk_queue_length);  
+            console.log(virtual_memory);
+            console.log(network_write_avg);
+            console.log(DISK_IO_READ_AVG); **/
+
+
+            this.barChartData = [
+       
+                { data: cpu_util_avg, label: 'CPU Avg' },
+                { data: virtual_memory, label: 'MEMORY%' },      
+                { data: disk_queue_length, label: 'DQL' },                          
+               /* { data: blueBlueRobots, label: 'NO OF CRASHES' },   
+                { data: network_read_avg, label: 'RESPONSE TIME' },
+                { data: network_write_avg, label: 'TIME SPENT' } **/
+            ]; 
+
+           /* this.doughnutChartData = [network_read_avg, network_write_avg, DISK_IO_READ_AVG, DISK_IO_WRITE_AVG]; **/
+
+        }, // Bind to view
+        err => {
+          // Log errors if any
+          console.log(err);
+        }
+        ); 
+    }
+
+    getElements(arr: any[]){
+        console.log("Checking");
+        for(var item in arr) {
+            console.log(item);
+           /* return this.x; **/
+        }
+    }
 
     // bar chart
-    public barChartOptions: any = {
+    private barChartOptions: any = {
         scaleShowVerticalLines: false,
         responsive: true
     };
-    public barChartLabels: string[] = [
-        'Monday',
-        'Tuesday',
-        'Wednesday',
-        'Thursday',
-        'Friday',
-        'Saturday',
-        'Sunday'
-    ];
-    public barChartType: string = 'bar';
-    public barChartLegend: boolean = true;
 
-    public barChartData: any[] = [
-        { data: [65, 59, 80, 81, 56, 55, 40], label: 'Fbss Client Inquiry' },
-        { data: [28, 48, 40, 19, 86, 27, 90], label: 'Cif Search' },
-        /** Added these */
-        { data: [28, 48, 40, 19, 86, 27, 90], label: 'Fbss Login' },
-        { data: [38, 48, 40, 19, 86, 27, 90], label: 'Fbss Launch' }
-
+    private barChartLabels: string[] = [ 
+    'Sunday',
+    'Monday',
+    'Tuesday',
+    'Wednesday',
+    'Thursday',
+    'Friday',
+    'Saturday'
+    /*'PHYSICAL_MEMORY_UTIL_AVG',
+    'SERVING_DEVICE_NAME',
+    'TIMEFRAME',
+    'VIRTUAL_MEMORY_UTIL_AVG',
+    'USERNAME',
+    'ACCOUNT_NAME' **/
     ];
+    private barChartType: string = 'bar';
+    private barChartLegend: boolean = true;
+
+    private dataArr: any[] = [{data:[], label:''}];
+    private barChartData: any[];
+
+     
+  /*  private barChartData: any[] = [
+       
+        { data: [this.sample, 50, 90, 49, 89, 12, 69], label: 'DQL' },
+        { data: [70, 50, 100, 80, 90, 60, 75], label: 'UXI' },
+
+        { data: [89, 48, 40, 19, 100, 27, 90], label: 'MEMORY%' },
+        { data: [28, 48, 86, 19, 86, 27, 90], label: 'NO OF CRASHES' },
+
+        { data: [38, 48, 40, 19, 86, 27, 90], label: 'RESPONSE TIME' },
+        { data: [20, 50, 90, 100, 89, 12, 69], label: 'TIME SPENT' }
+
+    ]; **/
 
     // Doughnut
-    public doughnutChartLabels: string[] = [
-        'Fbss Client Inquiry',
-        'Cif Search',
-        'Fbss Login',
-        'Fbss Launch'
+    private doughnutChartLabels: string[] = [
+        'DQL',
+        'UXI',
+        'MEMORY',
+        'NO OF CRASHES'
 
     ];
-    public doughnutChartData: number[] = [350, 450, 100, 90];
-    public doughnutChartType: string = 'doughnut';
+    private doughnutChartData: number[];
+   /* private doughnutChartData: number[] = [350.9887, 450, 100, 90]; **/
+    private doughnutChartType: string = 'doughnut';
 
     // Radar
-    public radarChartLabels: string[] = [
-        'Inactivity',
-        'Cif Search',
-        'Fbss Login',
-        'Fbss Launch',
-        'Outlook',
-        'Fbss Client Inquiry',
-        'Acrobat'
+    private radarChartLabels: string[] = [
+        'SERVING_DEVICE_NAME',
+        'VIRTUAL_MEMORY_UTIL_AVG',
+        'PHYSICAL_MEMORY_UTIL_AVG',
+        'CPU_UTILIZATION_AVG',
+        'NETWORK_READ_AVG',
+        'NETWORK_WRITE_AVG'
     ];
-    public radarChartData: any = [
+    private radarChartData: any = [
         { data: [65, 59, 90, 81, 56, 55, 40], label: 'Series A' },
         { data: [28, 48, 40, 19, 96, 27, 100], label: 'Series B' }
     ];
-    public radarChartType: string = 'radar';
+    private radarChartType: string = 'radar';
 
     // Pie
-    public pieChartLabels: string[] = [
-        'Fbss Client Inquiry',
-        'Cif Search',
-        'Fbss Login',
-        'Fbss Launch'
+    private pieChartLabels: string[] = [
+        'SERVING_DEVICE_NAME',
+        'VIRTUAL_MEMORY_UTIL_AVG',
+        'PHYSICAL_MEMORY_UTIL_AVG',
+        'CPU_UTILIZATION_AVG'
     ];
-    public pieChartData: number[] = [300, 500, 100, 250];
-    public pieChartType: string = 'pie';
+    private pieChartData: number[] = [300, 500, 100, 250];
+    private pieChartType: string = 'pie';
 
     // PolarArea
-    public polarAreaChartLabels: string[] = [
+    private polarAreaChartLabels: string[] = [
         'AF CAF Gauteng East Sales Support [Consumer Banking]',
         'BB Limpopo Premium LP [Distribution and Coverage]',
         'Delivery Chanel Services',
         'Group Administration',
         'Group Credit'
     ];
-    public polarAreaChartData: number[] = [300, 500, 100, 40, 120];
-    public polarAreaLegend: boolean = true;
+    private polarAreaChartData: number[] = [300, 500, 100, 40, 120];
+    private polarAreaLegend: boolean = true;
 
-    public polarAreaChartType: string = 'polarArea';
+    private polarAreaChartType: string = 'polarArea';
 
     // lineChart
-    public lineChartData: Array<any> = [
-        { data: [65, 59, 80, 81, 56, 55, 40], label: 'Fbss Launch' },
-        { data: [28, 48, 40, 19, 86, 27, 90], label: 'Fbss Login' },
-        { data: [18, 48, 77, 9, 100, 27, 40], label: 'Fbss Client Inquiry'},
-        { data: [70, 65, 77, 15, 95, 59, 80], label: 'Cif Search'}
+    private lineChartData: Array<any> = [
+        { data: [65, 59, 80, 81, 56, 55, 80], label: 'VIRTUAL_MEMORY_UTIL_AVG' },
+        { data: [28, 48, 40, 19, 86, 27, 90], label: 'PHYSICAL_MEMORY_UTIL_AVG' },
+        { data: [69, 48, 77, 15, 100, 27, 70], label: 'CPU_UTILIZATION_AVG'},
+        { data: [70, 65, 77, 15, 95, 59, 80], label: 'SERVING_DEVICE_NAME'}
     ];
-    public lineChartLabels: Array<any> = [
+    private lineChartLabels: Array<any> = [
         'January',
         'February',
         'March',
@@ -115,10 +213,10 @@ export class ChartsComponent implements OnInit {
         'June',
         'July'
     ];
-    public lineChartOptions: any = {
+    private lineChartOptions: any = {
         responsive: true
     };
-    public lineChartColors: Array<any> = [
+    private lineChartColors: Array<any> = [
         {
             // grey
             backgroundColor: 'rgba(148,159,177,0.2)',
@@ -147,19 +245,19 @@ export class ChartsComponent implements OnInit {
             pointHoverBorderColor: 'rgba(148,159,177,0.8)'
         }
     ];
-    public lineChartLegend: boolean = true;
-    public lineChartType: string = 'line';
+    private lineChartLegend: boolean = true;
+    private lineChartType: string = 'line';
 
     // events
-    public chartClicked(e: any): void {
+    private chartClicked(e: any): void {
         // console.log(e);
     }
 
-    public chartHovered(e: any): void {
+    private chartHovered(e: any): void {
         // console.log(e);
     }
 
-    public randomize(): void {
+    private randomize(): void {
         // Only Change 3 values
         const data = [
             Math.round(Math.random() * 100),
@@ -179,27 +277,6 @@ export class ChartsComponent implements OnInit {
          * so one way around it, is to clone the data, change it and then
          * assign it;
          */
-    }
-
-    ngOnInit() {
-
-       /* this._slimLoadingBarService.start();
-
-        this.aternityService
-            .getAll<any[]>()
-            .subscribe((data: any[]) => this.values = data,
-            error => () => {
-                this._toasterService.pop('error', 'Damn', 'Something went wrong...');
-            },
-            () => {
-                this._toasterService.pop('success', 'Complete', 'Getting all values complete');
-                this._slimLoadingBarService.complete();
-            });
-
-            this.aternityService
-            .getAll<MyTypedItem[]>()
-            .subscribe((data: MyTypedItem[]) => this.values = data,
-        } **/
     }
 
 }

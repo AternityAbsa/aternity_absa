@@ -5,7 +5,6 @@ import { Http, Response, Headers } from '@angular/http';
 import { ChartsRoutingModule } from './charts-routing.module';
 import { ChartsComponent } from './charts.component';
 import { PageHeaderModule } from '../../shared';
-import { AternityService } from '../../services/aternity-service'; 
 
 @NgModule({
     imports: [CommonModule, Ng2Charts, ChartsRoutingModule, PageHeaderModule],
@@ -16,11 +15,7 @@ import { AternityService } from '../../services/aternity-service';
 
 export class ChartsModule {
 
-
-    public data: any;
-
-    constructor(private _http: Http, private aternityService: AternityService) {
-    this.data = aternityService.getAll();
+    constructor() {
   }
 }
 

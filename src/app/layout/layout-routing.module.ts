@@ -9,7 +9,8 @@ const routes: Routes = [
         children: [
             { path: '', redirectTo: 'dashboard' },
             { path: 'dashboard', loadChildren: './dashboard/dashboard.module#DashboardModule' },
-            { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' },
+            { path: 'charts', loadChildren: './charts/charts.module#ChartsModule' }, 
+           /* { path: 'blueprism', loadChildren: './blueprism/blueprism.module#BlueprismServersModule' }, **/
             /*{ path: 'imsp-charts', loadChildren: './imsp-charts/imsp-charts.module#ImspChartsModule' },**/
             { path: 'tables', loadChildren: './tables/tables.module#TablesModule' },
             { path: 'forms', loadChildren: './form/form.module#FormModule' },

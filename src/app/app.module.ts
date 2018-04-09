@@ -9,14 +9,17 @@ import { HttpModule }    from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './shared';
-import { AternityService } from './services/aternity-service'; 
 import { AternityProvider } from '../providers/aternity_api'; 
-import { AternityApi } from './models/aternity-api';
+import { BlueprismModel} from './models/BlueprismModel';
+import { BusinessAreaModel} from './models/business_area_model';
+import { BlueprismService} from './services/BlueprismService';
+import { DataLoadService } from './services/DataLoadService';
+import { BusinessService} from './services/business_area_service';
+import {OdataLabels} from './models/OdataLabels';
+import {} from './server-error';
 
-// AoT requires an exported function for factories
 export function createTranslateLoader(http: HttpClient) {
-    // for development
-    // return new TranslateHttpLoader(http, '/start-angular/SB-Admin-BS4-Angular-5/master/dist/assets/i18n/', '.json');
+
     return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
 
@@ -27,6 +30,7 @@ export function createTranslateLoader(http: HttpClient) {
         BrowserModule,
         BrowserAnimationsModule,
         HttpClientModule,
+        
         TranslateModule.forRoot({
             loader: {
                 provide: TranslateLoader,
@@ -39,8 +43,10 @@ export function createTranslateLoader(http: HttpClient) {
     declarations: [AppComponent],
     providers: [
          AuthGuard, 
-         AternityService,
-         AternityApi
+         BlueprismService,
+         BusinessService,
+         DataLoadService,
+         OdataLabels
          ],
     bootstrap: [AppComponent]
 })
