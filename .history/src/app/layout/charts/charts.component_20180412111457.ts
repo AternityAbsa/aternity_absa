@@ -39,12 +39,11 @@ export class ChartsComponent implements OnInit {
 
     ngOnInit(){
        
-            /** refresh every 5 seconds 
+            /** refresh every 5 seconds **/
             this.interval = setInterval(() => { 
             this.loadBarChart();
-             this.loadDoughnut(); 
-            }, 10000); **/
-            this.loadBarChart();
+            /* this.loadDoughnut(); 
+            }, 500000); 
     }
 
     loadBarChart(){

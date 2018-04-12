@@ -1,33 +1,10 @@
-<div [@routerTransition]>
+ <div [@routerTransition]>
     <app-page-header [heading]="'Blueprism Activity Charts'"></app-page-header>
     <div class="row">
         <div class="col col-sm-6">
             <div class="card mb-3">
                 <div class="card-header">
-                  Blueprism Servers Chart
-                </div>
-                <br>
-                <!-- List of Machines Dropdown  -->
-                <div class="col col-sm-5"> 
-                    <div class="card mb-3"> 
-                            <select>
-                                <option *ngFor="let blueprism of deviceName">
-                                    {{blueprism}}
-                                </option>
-                            </select>
-                            
-                    </div>
-                </div>
-
-                 <!-- Timeframe -->
-                 <div class="col col-sm-5"> 
-                        <div class="card mb-3"> 
-                                <select>
-                                    <option *ngFor="let time of timeframe">
-                                        {{time | date: 'medium'}}
-                                    </option>
-                                </select>
-                        </div>
+                  Blueprism Bar Chart
                 </div>
 
                 <div class="card-body">
@@ -115,13 +92,12 @@
     </div>
 </div>  
 
- <!--<p> Sample Data</p>
+<!-- <p> Sample Data</p>
 <div>
 <ul>
-              <li *ngFor="let apps of blueapplication?.value">
+              <li *ngFor="let apps of application?.value">
                   {{ apps.SERVING_DEVICE_NAME }} 
                   {{ apps.PHYSICAL_MEMORY_UTIL_AVG}} 
-              </li> 
-              <li>{{device_name?.value}}</li>
+              </li>
 </ul> 
 </div>  -->

@@ -43,8 +43,7 @@ export class ChartsComponent implements OnInit {
             this.interval = setInterval(() => { 
             this.loadBarChart();
              this.loadDoughnut(); 
-            }, 10000); **/
-            this.loadBarChart();
+            }, 10000); 
     }
 
     loadBarChart(){

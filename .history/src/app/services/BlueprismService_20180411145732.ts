@@ -44,7 +44,7 @@ export class BlueprismService {
 
        /** /HOST_RESOURCES_HOURLY?$format=json&$top=5 */
        /** /HOST_RESOURCES_HOURLY?$filter=(SERVING_DEVICE_TYPE%20eq%20%27Virtual%20App%20Server%27)&$top=5 */
-       return this.http.get(this.basePath+'/HOST_RESOURCES_HOURLY?$filter=(SERVING_DEVICE_TYPE%20eq%20%27Virtual%20App%20Server%27)&$top=7')
+       return this.http.get(this.basePath+'/HOST_RESOURCES_HOURLY?$filter=(SERVING_DEVICE_TYPE%20eq%20%27Virtual%20App%20Server%27)&$top=10')
        .map(res => res.json())
        /* yep **/
        

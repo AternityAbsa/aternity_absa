@@ -16,6 +16,7 @@ import { BlueprismService} from './services/BlueprismService';
 import { DataLoadService } from './services/DataLoadService';
 import { BusinessService} from './services/business_area_service';
 import {OdataLabels} from './models/OdataLabels';
+import { VarModel } from './models/varModel';
 
 export function createTranslateLoader(http: HttpClient) {
 
@@ -47,6 +48,7 @@ export function createTranslateLoader(http: HttpClient) {
          DataLoadService,
          OdataLabels,
          BlueprismModel
+         VarModel
          ],
     bootstrap: [AppComponent]
 })

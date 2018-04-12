@@ -44,7 +44,6 @@ export class ChartsComponent implements OnInit {
             this.loadBarChart();
              this.loadDoughnut(); 
             }, 10000); **/
-            this.loadBarChart();
     }
 
     loadBarChart(){
