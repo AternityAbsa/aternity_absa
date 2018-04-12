@@ -8,7 +8,6 @@ import { Observable } from 'rxjs/Observable';
 import { error } from 'util';
 import { BlueprismServices } from '../blueprism-servers/blueprism.service';
 import { OdataLabels}  from '../../models/OdataLabels';
-import { Subscription } from 'rxjs/Subscription';
 
 
 @Component({
@@ -50,13 +49,16 @@ export class ChartsComponent implements OnInit {
     }
 
     ngOnDestroy() {
+        // Only need to unsubscribe if its a multi event Observable
         this.subscription.unsubscribe();
       }
 
     loadBarChart(){
 
-           this.blueprismService.getBlueprismData().subscribe(
+
+         this.blueprismService.getBlueprismData().subscribe(
             blue_applications => {
+
             this.dataModel.PHYSICAL_MEMORY_UTIL_AVG = blue_applications['value'].map(blue_applications => blue_applications.PHYSICAL_MEMORY_UTIL_AVG);
             let blueBlueRobots = blue_applications['value'].map(blue_applications => blue_applications.SERVING_DEVICE_NAME);
             this.dataModel.CPU_UTILIZATION_AVG = blue_applications['value'].map(blue_applications => blue_applications.CPU_UTILIZATION_AVG);
@@ -307,7 +309,7 @@ export class ChartsComponent implements OnInit {
 
     private updateData(): void {
         // Only Change1 3 values
-       /* const data = [
+        const data = [
             Math.round(Math.random() * 100),
             59,
             80,
@@ -315,11 +317,9 @@ export class ChartsComponent implements OnInit {
             56,
             Math.random() * 100,
             40
-        ]; **/
-
-        const data1 = [20, 50, 90];
+        ];
         const clone = JSON.parse(JSON.stringify(this.barChartData));
-        clone[0].data = data1;
+        clone[0].data = data;
         this.barChartData = clone;
         /**
          * (My guess), for Angular to recognize the change in the dataset

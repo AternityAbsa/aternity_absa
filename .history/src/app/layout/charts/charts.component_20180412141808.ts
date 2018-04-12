@@ -317,7 +317,7 @@ export class ChartsComponent implements OnInit {
             40
         ]; **/
 
-        const data1 = [20, 50, 90];
+        const data1 = [this.d];
         const clone = JSON.parse(JSON.stringify(this.barChartData));
         clone[0].data = data1;
         this.barChartData = clone;

@@ -12,7 +12,7 @@
                     <div class="card mb-3"> 
                             <select>
                                 <option *ngFor="let blueprism of deviceName">
-                                    {{blueprism}}
+                                    {{blueprism?}}
                                 </option>
                             </select>                      
                     </div>        
@@ -113,14 +113,10 @@
 
       <div *ngIf="chart">
         <canvas id="canvas">{{ chart }}</canvas>
-      </div> 
-      
+      </div>  -
 
-    </div> 
+    </div>
 </div>  
-
-<footer class="card-footer">
-</footer>
 
  <!--<p> Sample Data</p>
 <div>

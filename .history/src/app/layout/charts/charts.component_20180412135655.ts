@@ -307,7 +307,7 @@ export class ChartsComponent implements OnInit {
 
     private updateData(): void {
         // Only Change1 3 values
-       /* const data = [
+        const data = [
             Math.round(Math.random() * 100),
             59,
             80,
@@ -315,11 +315,11 @@ export class ChartsComponent implements OnInit {
             56,
             Math.random() * 100,
             40
-        ]; **/
+        ];
 
-        const data1 = [20, 50, 90];
+        const
         const clone = JSON.parse(JSON.stringify(this.barChartData));
-        clone[0].data = data1;
+        clone[0].data = data;
         this.barChartData = clone;
         /**
          * (My guess), for Angular to recognize the change in the dataset

@@ -8,7 +8,6 @@ import { Observable } from 'rxjs/Observable';
 import { error } from 'util';
 import { BlueprismServices } from '../blueprism-servers/blueprism.service';
 import { OdataLabels}  from '../../models/OdataLabels';
-import { Subscription } from 'rxjs/Subscription';
 
 
 @Component({
@@ -33,7 +32,6 @@ export class ChartsComponent implements OnInit {
     deviceName : any;
     time_Frame : any;
     interval : any;
-    subscription: Subscription;
 
     constructor(private blueprismService: BlueprismService, private service : BlueprismServices, private dataLoad : DataLoadService,
     private odate_lables : OdataLabels, private dataModel : BlueprismModel) {
@@ -49,16 +47,13 @@ export class ChartsComponent implements OnInit {
             this.loadBarChart();
     }
 
-    ngOnDestroy() {
-        this.subscription.unsubscribe();
-      }
-
     loadBarChart(){
 
-           this.blueprismService.getBlueprismData().subscribe(
+         this.blueprismService.getBlueprismData().subscribe(
             blue_applications => {
+
             this.dataModel.PHYSICAL_MEMORY_UTIL_AVG = blue_applications['value'].map(blue_applications => blue_applications.PHYSICAL_MEMORY_UTIL_AVG);
-            let blueBlueRobots = blue_applications['value'].map(blue_applications => blue_applications.SERVING_DEVICE_NAME);
+            this. blueBlueRobots = blue_applications['value'].map(blue_applications => blue_applications.SERVING_DEVICE_NAME);
             this.dataModel.CPU_UTILIZATION_AVG = blue_applications['value'].map(blue_applications => blue_applications.CPU_UTILIZATION_AVG);
             this.dataModel.DISK_QUEUE_LENGTH_MAX = blue_applications['value'].map(blue_applications => blue_applications.DISK_QUEUE_LENGTH_MAX);
            
@@ -305,33 +300,8 @@ export class ChartsComponent implements OnInit {
        /** console.log(e); */
     }
 
-    private updateData(): void {
-        // Only Change1 3 values
-       /* const data = [
-            Math.round(Math.random() * 100),
-            59,
-            80,
-            Math.random() * 100,
-            56,
-            Math.random() * 100,
-            40
-        ]; **/
-
-        const data1 = [20, 50, 90];
-        const clone = JSON.parse(JSON.stringify(this.barChartData));
-        clone[0].data = data1;
-        this.barChartData = clone;
-        /**
-         * (My guess), for Angular to recognize the change in the dataset
-         * it has to change the dataset variable directly,
-         * so one way around it, is to clone the data, change it and then
-         * assign it;
-         */
-    }
-
-
     private randomize(): void {
-        // Only Change1 3 values
+        // Only Change 3 values
         const data = [
             Math.round(Math.random() * 100),
             59,
