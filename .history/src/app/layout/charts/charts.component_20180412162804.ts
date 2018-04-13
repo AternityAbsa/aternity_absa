@@ -316,6 +316,7 @@ export class ChartsComponent implements OnInit {
         
         this.selectedValue = event.target.value;  
         if (this.selectedValue !== null){
+           /* console.log(this.selectedValue);
         const data1 = this.dataModel.CPU_UTILIZATION_AVG;
         const clone = JSON.parse(JSON.stringify(this.barChartData));
         clone[0].data = data1;

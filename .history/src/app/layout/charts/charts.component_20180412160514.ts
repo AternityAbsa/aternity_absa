@@ -305,23 +305,16 @@ export class ChartsComponent implements OnInit {
        /** console.log(e); */
     }
 
-    selectedValue : String;
+    selectedValue : any;
 
-    private updateData(event: any){
+    private updateData(event: any): void {
 
        /* const data1 = [20, 50, 90];
         const clone = JSON.parse(JSON.stringify(this.barChartData));
         clone[0].data = data1;
         this.barChartData = clone; **/
-        
-        this.selectedValue = event.target.value;  
-        if (this.selectedValue !== null){
-        const data1 = this.dataModel.CPU_UTILIZATION_AVG;
-        const clone = JSON.parse(JSON.stringify(this.barChartData));
-        clone[0].data = data1;
-        this.barChartData = clone;
-        console.log(data1);
-        }  
+        this.selectedValue = event.target.
+       
     }
 
 

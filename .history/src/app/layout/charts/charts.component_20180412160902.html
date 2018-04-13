@@ -14,12 +14,8 @@
                                 <option *ngFor="let blueprism of deviceName">
                                     {{blueprism}}
                                 </option>
-                            </select>    
-                            <p>
-                                <span>{{selectedValue}}</span>
-                            </p>                  
+                            </select>                      
                     </div>        
-                    
                 </div>
 
                  <!-- Timeframe -->
@@ -34,7 +30,7 @@
                 </div>
 
                 <!--<div class="card-body">
-                    <button class="btn btn-info btn-sm" (change)="updateData()">UpdateData</button>
+                    <button class="btn btn-info btn-sm" (change)="updateData($event)">UpdateData</button>
                 </div> -->
 
                 <div class="card-body">

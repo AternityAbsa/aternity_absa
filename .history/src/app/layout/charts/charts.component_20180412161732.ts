@@ -305,7 +305,7 @@ export class ChartsComponent implements OnInit {
        /** console.log(e); */
     }
 
-    selectedValue : String;
+    selectedValue : any[];
 
     private updateData(event: any){
 
@@ -315,7 +315,7 @@ export class ChartsComponent implements OnInit {
         this.barChartData = clone; **/
         
         this.selectedValue = event.target.value;  
-        if (this.selectedValue !== null){
+        if (this.selectedValue === this.dataModel.s){
         const data1 = this.dataModel.CPU_UTILIZATION_AVG;
         const clone = JSON.parse(JSON.stringify(this.barChartData));
         clone[0].data = data1;

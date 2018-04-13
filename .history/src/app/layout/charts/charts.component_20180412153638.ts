@@ -294,7 +294,7 @@ export class ChartsComponent implements OnInit {
         if (e.active.length === 0) { // do nothing, this is not a meaningful click
 			return;
 		}
-		let label = e.active[0]._model.label;
+		let label = e.active[0]._model.d;
 
 		this.currentNode = this.currentNode || this.allTheData;
 		this.currentNode = this.currentNode.drilldown[label];
@@ -305,23 +305,28 @@ export class ChartsComponent implements OnInit {
        /** console.log(e); */
     }
 
-    selectedValue : String;
+    private updateData(): void {
+        // Only Change1 3 values
+       /* const data = [
+            Math.round(Math.random() * 100),
+            59,
+            80,
+            Math.random() * 100,
+            56,
+            Math.random() * 100,
+            40
+        ]; **/
 
-    private updateData(event: any){
-
-       /* const data1 = [20, 50, 90];
-        const clone = JSON.parse(JSON.stringify(this.barChartData));
-        clone[0].data = data1;
-        this.barChartData = clone; **/
-        
-        this.selectedValue = event.target.value;  
-        if (this.selectedValue !== null){
-        const data1 = this.dataModel.CPU_UTILIZATION_AVG;
+        const data1 = [20, 50, 90];
         const clone = JSON.parse(JSON.stringify(this.barChartData));
         clone[0].data = data1;
         this.barChartData = clone;
-        console.log(data1);
-        }  
+        /**
+         * (My guess), for Angular to recognize the change in the dataset
+         * it has to change the dataset variable directly,
+         * so one way around it, is to clone the data, change it and then
+         * assign it;
+         */
     }
 
 
