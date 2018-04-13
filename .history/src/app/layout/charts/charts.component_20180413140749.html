@@ -1,0 +1,148 @@
+<div [@routerTransition]>
+    <app-page-header [heading]="'Blueprism Activity Charts'"></app-page-header>
+    <div class="row">
+        <div class="col col-sm-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                  Blueprism Servers Chart
+                </div>
+                <br>
+                <!-- List of Machines Dropdown  -->
+                <div class="col col-sm-5"> 
+                    <div class="card mb-3"> 
+                            <select (change)="updateData($event)">
+                                <option *ngFor="let blueprism of deviceName">
+                                    {{blueprism}}
+                                </option>
+                            </select>    
+                            <p>
+                                <span>{{selectedValue}}</span>
+                            </p>                  
+                    </div>        
+
+                </div>
+
+                 <!-- Timeframe -->
+                 <div class="col col-sm-5"> 
+                        <div class="card mb-3"> 
+                                <select>
+                                    <option *ngFor="let time of time_Frame">
+                                        {{time | date: 'medium'}}
+                                    </option>
+                                </select>
+                        </div>
+                </div>
+
+                <!--<div class="card-body">
+                    <button class="btn btn-info btn-sm" (change)="updateData()">UpdateData</button>
+                </div> -->
+
+                <div class="card-body">
+                    <canvas *ngIf="barChartData" baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" [legend]="barChartLegend" [chartType]="barChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                    </canvas>
+                </div>
+                <!--<div class="card-footer">
+                    <button class="btn btn-info btn-sm" (click)="randomize()">Update</button>
+                </div> -->
+            </div>
+        </div>
+        <div class="col col-sm-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    Blueprism Doughnut Chart
+                </div>
+                 <!-- Timeframe -->
+                 <div class="col col-sm-5"> 
+                    <div class="card mb-3"> 
+                            <select>
+                                <option *ngFor="let time of time_Frame">
+                                    {{time | date: 'medium'}}
+                                </option>
+                            </select>
+                    </div>
+                 </div> 
+                <div class="card-body"> 
+                    <canvas baseChart height="180px" [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-sm-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                  Blueprism Radar Chart
+                </div>
+                <div class="card-body">
+                    <canvas baseChart height="150px" [datasets]="radarChartData" [labels]="radarChartLabels" [chartType]="radarChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col col-sm-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                 Blueprism Pie Chart
+                </div>
+                <div class="card-body">
+                    <canvas baseChart height="150px" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-sm-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    Blueprism Polar Area Chart
+                </div>
+                <div class="card-body">
+                    <canvas baseChart height="130px" [data]="polarAreaChartData" [labels]="polarAreaChartLabels" [legend]="polarAreaLegend" [chartType]="polarAreaChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                    </canvas>
+                </div>
+            </div>
+        </div>
+        <div class="col col-sm-6">
+            <div class="card mb-3">
+                <div class="card-header">
+                    Blueprism Line Chart
+                </div>
+                <div class="card-body">
+                    <canvas baseChart height="130" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
+                    </canvas> 
+                </div>
+            </div>
+        </div>
+
+        <div class="col col-sm-6">
+            <div class="card mb-3">
+                <div class="card-header">                       
+                          {{data}}                                             
+                </div>
+           </div>
+       </div>
+        
+
+      <div *ngIf="chart">
+        <canvas id="canvas">{{ chart }}</canvas>
+      </div> 
+      
+
+    </div> 
+</div>  
+
+<footer class="card-footer">
+</footer>
+
+ <!--<p> Sample Data</p>
+<div>
+<ul>
+              <li *ngFor="let apps of blueapplication?.value">
+                  {{ apps.SERVING_DEVICE_NAME }} 
+                  {{ apps.PHYSICAL_MEMORY_UTIL_AVG}} 
+              </li> 
+              <li>{{device_name?.value}}</li>
+</ul> 
+</div>  -->
