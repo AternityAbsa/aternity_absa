@@ -22,7 +22,7 @@ export class BlueprismModel  {
     LAST_REPORTING_DATETIME : number;
     MICROSOFT_STABILITY_INDEX : number;
     DEVICE_CPU_GENERATION : number;
-    DEVICE_CPU_CORES = [];
+    DEVICE_CPU_CORES : number;
     AGENT_VERSION : number;
 
     /** Application Raw */

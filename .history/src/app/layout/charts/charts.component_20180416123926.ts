@@ -57,6 +57,7 @@ export class ChartsComponent implements OnInit {
     'Friday',
     'Saturday'
     ]; 
+    
 
     // Doughnut
     private doughnutChartLabels: string[] = [
@@ -66,7 +67,7 @@ export class ChartsComponent implements OnInit {
         'NO OF CRASHES'
     ];
 
-   /* private doughnutChartData = []; **/
+    private doughnutChartData = []; 
     private doughnutChartData: number[] = [78, 99, 89, 99];  
     private doughnutChartType: string = 'doughnut';
 
@@ -81,12 +82,12 @@ export class ChartsComponent implements OnInit {
         'PERFORMANCE_WEIGHT'
     ];
 
-       private radarChartData: any; 
+    private radarChartData : any =[ 40, 70, 30, 90, 98, 89, 9]; 
+
     /* private radarChartData: any = [
-        { data: [65, 59, 2.78, 81, 56.67, 55, 40], label: 'Series A' },
+        { data: [65, 59, 90, 81, 56, 55, 40], label: 'Series A' },
         { data: [28, 48, 40, 19, 96, 27, 100], label: 'Series B' }
     ]; **/
-
     private radarChartType: string = 'radar';
 
     constructor(private blueprismService: BlueprismService, private service : BlueprismServices, private dataLoad : DataLoadService,
@@ -109,7 +110,7 @@ export class ChartsComponent implements OnInit {
            }, 2000); **/
             /*this.loadBarChart(); **/
             /*this.loadDoughnut(); **/
-            this.radarChartData = this.loadRadar(); 
+            this.loadRadar(); 
             
     }
 
@@ -204,7 +205,7 @@ export class ChartsComponent implements OnInit {
         );  
     }
 
-    loadRadar(): any {
+    loadRadar(){
         this.blueprismService.applicationRawData().subscribe(
             blue_applications => {
 
@@ -214,21 +215,15 @@ export class ChartsComponent implements OnInit {
             this.dataModel.PERFORMANCE_INDEX = blue_applications['value'].map(blue_applications => blue_applications.PERFORMANCE_INDEX);
             this.dataModel.ACTIVITY_VOLUME = blue_applications['value'].map(blue_applications => blue_applications.ACTIVITY_VOLUME);
             this.dataModel.HANG_TIME = blue_applications['value'].map(blue_applications => blue_applications.HANG_TIME);
-            
+               
             this.radar_uxi =  this.dataModel.UXI; 
             this.radar_crashes = this.dataModel.PERFORMANCE_INDEX;
-           /* console.log(this.radar_uxi); 
-            this.radarChartData = [ 40, 70, 30, 90, 98, 89, 99];**/
-            if(this.dataModel.PERFORMANCE_INDEX && this.dataModel.UXI !== null){
-            let  radarData: any[] = [
-            { data: this.dataModel.UXI, label: 'UXI' },   
-            { data: this.dataModel.PERFORMANCE_INDEX, label: 'CRASHES' } 
-            ];
-            this.radarChartData = radarData;    
-            console.log(this.radarChartData);    
-           
-        }
-        return this.radarChartData;
+            console.log(this.dataModel.UXI);
+           /* this.radarChartData = [ 40, 70, 30, 90, 98, 89, 99];**/
+           /* { data: this.dataModel.UXI, label: 'UXI' },   
+            { data: this.dataModel.PERFORMANCE_INDEX, label: 'CRASHES' } **/
+        
+            
         },
         err => {
           console.log(err);

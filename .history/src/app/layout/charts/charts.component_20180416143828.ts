@@ -225,10 +225,9 @@ export class ChartsComponent implements OnInit {
             { data: this.dataModel.PERFORMANCE_INDEX, label: 'CRASHES' } 
             ];
             this.radarChartData = radarData;    
-            console.log(this.radarChartData);    
-           
+            console.log(this.ra);    
+            return this.radarChartData;
         }
-        return this.radarChartData;
         },
         err => {
           console.log(err);

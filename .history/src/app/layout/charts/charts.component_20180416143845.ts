@@ -219,16 +219,15 @@ export class ChartsComponent implements OnInit {
             this.radar_crashes = this.dataModel.PERFORMANCE_INDEX;
            /* console.log(this.radar_uxi); 
             this.radarChartData = [ 40, 70, 30, 90, 98, 89, 99];**/
-            if(this.dataModel.PERFORMANCE_INDEX && this.dataModel.UXI !== null){
+            if(this.dataModel.PERFORMANCE_INDEX!== null){
             let  radarData: any[] = [
             { data: this.dataModel.UXI, label: 'UXI' },   
             { data: this.dataModel.PERFORMANCE_INDEX, label: 'CRASHES' } 
             ];
             this.radarChartData = radarData;    
             console.log(this.radarChartData);    
-           
+            return this.radarChartData;
         }
-        return this.radarChartData;
         },
         err => {
           console.log(err);

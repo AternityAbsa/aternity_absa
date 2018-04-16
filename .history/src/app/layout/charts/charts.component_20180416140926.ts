@@ -81,11 +81,11 @@ export class ChartsComponent implements OnInit {
         'PERFORMANCE_WEIGHT'
     ];
 
-       private radarChartData: any; 
-    /* private radarChartData: any = [
-        { data: [65, 59, 2.78, 81, 56.67, 55, 40], label: 'Series A' },
+    /* private radarChartData: any[] = []; **/
+     private radarChartData: any = [
+        { data: [5, 4.653, 5, 5, 5, 0, 4.578], label: 'Series A' },
         { data: [28, 48, 40, 19, 96, 27, 100], label: 'Series B' }
-    ]; **/
+    ]; 
 
     private radarChartType: string = 'radar';
 
@@ -226,9 +226,8 @@ export class ChartsComponent implements OnInit {
             ];
             this.radarChartData = radarData;    
             console.log(this.radarChartData);    
-           
+            return this.radarChartData;
         }
-        return this.radarChartData;
         },
         err => {
           console.log(err);

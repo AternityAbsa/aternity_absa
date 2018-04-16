@@ -226,7 +226,7 @@ export class ChartsComponent implements OnInit {
             ];
             this.radarChartData = radarData;    
             console.log(this.radarChartData);    
-           
+            return this.radarChartData;
         }
         return this.radarChartData;
         },
