@@ -231,12 +231,10 @@ export class ChartsComponent implements OnInit {
         err => {
           console.log(err);
         }
+        return this.radarChartData; 
         ); 
         console.log(radarData);     
-        return this.radarChartData = [
-            { data: [this.dataModel.UXI], label: 'Series A' },
-            { data: [this.dataModel.PERFORMANCE_INDEX], label: 'Series B' }
-        ]; 
+        return this.radarChartData; 
     }
 
     getElements(arr: any[]){

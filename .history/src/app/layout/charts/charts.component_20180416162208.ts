@@ -226,17 +226,14 @@ export class ChartsComponent implements OnInit {
             ];
             /*console.log(radarData);**/
             this.radarChartData = radarData;  
-            console.log(this.radarChartData)   
+            console.log(radarData)   
         },
         err => {
           console.log(err);
         }
         ); 
-        console.log(radarData);     
-        return this.radarChartData = [
-            { data: [this.dataModel.UXI], label: 'Series A' },
-            { data: [this.dataModel.PERFORMANCE_INDEX], label: 'Series B' }
-        ]; 
+        console.log(radarData);   
+        return radarData; 
     }
 
     getElements(arr: any[]){
