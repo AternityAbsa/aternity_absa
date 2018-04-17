@@ -262,7 +262,7 @@ export class ChartsComponent implements OnInit{
             this.dataModel.HANG_TIME = blue_applications['value'].map(blue_applications => blue_applications.HANG_TIME);
             
             
-            console.log()  
+            console.log(this.radarChartData)  
         },
         err => {
           console.log(err); 

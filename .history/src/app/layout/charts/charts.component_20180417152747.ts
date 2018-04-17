@@ -250,30 +250,8 @@ export class ChartsComponent implements OnInit{
             ];
     }
 
-    loadPie(): any[]{
-        this.blueprismService.applicationRawData().subscribe(
-            blue_applications => {
-
-            this.dataModel.UXI = blue_applications['value'].map(blue_applications => blue_applications.UXI);
-            this.dataModel.UXI_WEIGHT = blue_applications['value'].map(blue_applications => blue_applications.UXI_WEIGHT);
-            this.dataModel.CRASHES = blue_applications['value'].map(blue_applications => blue_applications.CRASHES);
-            this.dataModel.PERFORMANCE_INDEX = blue_applications['value'].map(blue_applications => blue_applications.PERFORMANCE_INDEX);
-            this.dataModel.ACTIVITY_VOLUME = blue_applications['value'].map(blue_applications => blue_applications.ACTIVITY_VOLUME);
-            this.dataModel.HANG_TIME = blue_applications['value'].map(blue_applications => blue_applications.HANG_TIME);
-            
-            
-            console.log()  
-        },
-        err => {
-          console.log(err); 
-        }
-        );    
-        return this.radarChartData = [
-            { data: [5, 8, 9, 3,6 ,8, 9], label: 'Series A' },
-            { data: [9, 1, 5, 7,2 ,3, 10], label: 'Series B' }
-            ];
-
-
+    loadPie(){
+        
     }
 
 

@@ -45,15 +45,7 @@ export class BlueprismService {
 
      public deviceInventoryData(): any{
         return this.http.get(this.basePath + this.device_inventory_api)
-        .map((response: Response) => {
-            if (response.status === 204) {
-                return undefined;
-            } else if (response.status === 500) {
-                return null;
-            }else {
-                return response.json();
-            }
-        });
+        .map(res => res.json())
         
      }
 
@@ -74,15 +66,7 @@ export class BlueprismService {
         *  --this URL: measures data for last 24 hours for blueprism servers
         */
        return this.http.get(this.basePath + this.host_resources_api)
-       .map((response: Response) => {
-        if (response.status === 204) {
-            return undefined;
-        } else if (response.status === 500) {
-            return null;
-        }else {
-            return response.json();
-        }
-    });
+       .map(res => res.json())
 
         /*.map(res => {
             this.blueprism = res.json();

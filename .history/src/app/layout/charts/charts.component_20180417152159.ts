@@ -90,7 +90,7 @@ export class ChartsComponent implements OnInit{
     ];
 
        /* private radarChartData: any; **/ 
-     private radarChartData: any = [
+     private radarChartData: any = [ 0, 0, 0, 0, 0, 0, 0
       /*  { data: [0, 5, 0, 5, 5, 5, 4.542], label: 'Series A' },
         { data: [28, 48, 40, 19, 96, 27, 100], label: 'Series B' } **/
     ]; 
@@ -116,8 +116,8 @@ export class ChartsComponent implements OnInit{
             this.radarChartData = this.loadRadar();  
            }, 3000); **/
 
-           this.loadBarChart(); 
-           this.loadDoughnut();
+           /*this.loadBarChart(); 
+           this.loadDoughnut();**/
            this.radarChartData = this.loadRadar(); 
             
     } 
@@ -204,7 +204,7 @@ export class ChartsComponent implements OnInit{
 
             this.dataModel.DEVICE_CPU_CORES = blue_applications['value'].map(blue_applications => blue_applications.DEVICE_CPU_CORES);
             this.dataModel.AGENT_VERSION = blue_applications['value'].map(blue_applications => blue_applications.AGENT_VERSION); 
-            this.dataModel.CRASHES = blue_applications['value'].map(blue_applications => blue_applications.CRASHES);       
+            this.dataModel.CRASHES = blue_applications['value'].map(blue_applications => blue_applications.CRASHES);        
 
             console.log(this.dataModel.DEVICE_CPU_CORES);
            
@@ -237,43 +237,20 @@ export class ChartsComponent implements OnInit{
                 { data: this.dataModel.UXI, label: 'Series A' },
                 { data: this.dataModel.PERFORMANCE_INDEX, label: 'Series B' }
             ];
-            /*console.log(radarData);**/ 
+            /*console.log(radarData);**/
+            this.radarChartData = radarData;  
             console.log(this.radarChartData)  
         },
         err => {
-          console.log(err); 
+          console.log(err);
         }
         );    
+
+        this.rad = [];
         return this.radarChartData = [
-            { data: [5, 8, 9, 3,6 ,8, 9], label: 'Series A' },
-            { data: [9, 1, 5, 7,2 ,3, 10], label: 'Series B' }
+            { data: this.dataModel.UXI, label: 'Series A' },
+            { data: [9, 1, 5, 8,2 ,3,  10], label: 'Series B' }
             ];
-    }
-
-    loadPie(): any[]{
-        this.blueprismService.applicationRawData().subscribe(
-            blue_applications => {
-
-            this.dataModel.UXI = blue_applications['value'].map(blue_applications => blue_applications.UXI);
-            this.dataModel.UXI_WEIGHT = blue_applications['value'].map(blue_applications => blue_applications.UXI_WEIGHT);
-            this.dataModel.CRASHES = blue_applications['value'].map(blue_applications => blue_applications.CRASHES);
-            this.dataModel.PERFORMANCE_INDEX = blue_applications['value'].map(blue_applications => blue_applications.PERFORMANCE_INDEX);
-            this.dataModel.ACTIVITY_VOLUME = blue_applications['value'].map(blue_applications => blue_applications.ACTIVITY_VOLUME);
-            this.dataModel.HANG_TIME = blue_applications['value'].map(blue_applications => blue_applications.HANG_TIME);
-            
-            
-            console.log()  
-        },
-        err => {
-          console.log(err); 
-        }
-        );    
-        return this.radarChartData = [
-            { data: [5, 8, 9, 3,6 ,8, 9], label: 'Series A' },
-            { data: [9, 1, 5, 7,2 ,3, 10], label: 'Series B' }
-            ];
-
-
     }
 
 

@@ -8,8 +8,6 @@ import { Observable } from 'rxjs/Observable';
 import { error } from 'util';
 import { BlueprismServices } from '../blueprism-servers/blueprism.service';
 import { Subscription } from 'rxjs/Subscription';
-// momentjs
-import * as moment from 'moment/moment';
 
 @Component({
     selector: 'app-charts',
@@ -18,7 +16,7 @@ import * as moment from 'moment/moment';
     animations: [routerTransition()],
     providers:[BlueprismServices]
 })
-export class ChartsComponent implements OnInit{
+export class ChartsComponent implements OnInit {
   
     dataArray : any[] = [];
     private robot : string;
@@ -43,12 +41,6 @@ export class ChartsComponent implements OnInit{
     private currentNode;
     private barChartData: any[];
     private allTheData : {}; 
-    public fromDate: moment.Moment = moment([moment().year(), moment().month()]);
-    public toDate: moment.Moment = moment([moment().year(), moment().month() + 1]);
-
-    private bar: string = 'Bar';
-    private dough: string = 'Dough';
-    private radar: string = 'Radar';
 
     // bar chart
     private barChartOptions: any = {
@@ -103,8 +95,8 @@ export class ChartsComponent implements OnInit{
 
     ngOnInit(){
        
-           /** refresh every 5 seconds **/
-           /*   this.interval = setInterval(() => { 
+            /** refresh every 5 seconds 
+            this.interval = setInterval(() => { 
             this.loadBarChart();
             }, 1000);
 
@@ -114,13 +106,12 @@ export class ChartsComponent implements OnInit{
 
            /* this.interval = setInterval(() => { 
             this.radarChartData = this.loadRadar();  
-           }, 3000); **/
-
-           this.loadBarChart(); 
-           this.loadDoughnut();
-           this.radarChartData = this.loadRadar(); 
+           }, 3000); 
+           /**  this.loadBarChart(); **/
+            /* this.loadDoughnut(); **/
+           /* this.radarChartData = this.loadRadar(); **/ 
             
-    } 
+    }
 
     ngOnDestroy() {
         this.subscription.unsubscribe();
@@ -204,7 +195,7 @@ export class ChartsComponent implements OnInit{
 
             this.dataModel.DEVICE_CPU_CORES = blue_applications['value'].map(blue_applications => blue_applications.DEVICE_CPU_CORES);
             this.dataModel.AGENT_VERSION = blue_applications['value'].map(blue_applications => blue_applications.AGENT_VERSION); 
-            this.dataModel.CRASHES = blue_applications['value'].map(blue_applications => blue_applications.CRASHES);       
+            this.dataModel.CRASHES = blue_applications['value'].map(blue_applications => blue_applications.CRASHES);        
 
             console.log(this.dataModel.DEVICE_CPU_CORES);
            
@@ -237,45 +228,16 @@ export class ChartsComponent implements OnInit{
                 { data: this.dataModel.UXI, label: 'Series A' },
                 { data: this.dataModel.PERFORMANCE_INDEX, label: 'Series B' }
             ];
-            /*console.log(radarData);**/ 
+            /*console.log(radarData);**/
+            this.radarChartData = radarData;  
             console.log(this.radarChartData)  
         },
         err => {
-          console.log(err); 
+          console.log(err);
         }
         );    
-        return this.radarChartData = [
-            { data: [5, 8, 9, 3,6 ,8, 9], label: 'Series A' },
-            { data: [9, 1, 5, 7,2 ,3, 10], label: 'Series B' }
-            ];
+        return this.radarChartData = [0,0,0,0,0,0,0];  
     }
-
-    loadPie(): any[]{
-        this.blueprismService.applicationRawData().subscribe(
-            blue_applications => {
-
-            this.dataModel.UXI = blue_applications['value'].map(blue_applications => blue_applications.UXI);
-            this.dataModel.UXI_WEIGHT = blue_applications['value'].map(blue_applications => blue_applications.UXI_WEIGHT);
-            this.dataModel.CRASHES = blue_applications['value'].map(blue_applications => blue_applications.CRASHES);
-            this.dataModel.PERFORMANCE_INDEX = blue_applications['value'].map(blue_applications => blue_applications.PERFORMANCE_INDEX);
-            this.dataModel.ACTIVITY_VOLUME = blue_applications['value'].map(blue_applications => blue_applications.ACTIVITY_VOLUME);
-            this.dataModel.HANG_TIME = blue_applications['value'].map(blue_applications => blue_applications.HANG_TIME);
-            
-            
-            console.log()  
-        },
-        err => {
-          console.log(err); 
-        }
-        );    
-        return this.radarChartData = [
-            { data: [5, 8, 9, 3,6 ,8, 9], label: 'Series A' },
-            { data: [9, 1, 5, 7,2 ,3, 10], label: 'Series B' }
-            ];
-
-
-    }
-
 
     getElements(arr: any[]){
         console.log("Checking");

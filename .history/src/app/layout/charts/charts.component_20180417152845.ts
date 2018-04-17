@@ -261,8 +261,12 @@ export class ChartsComponent implements OnInit{
             this.dataModel.ACTIVITY_VOLUME = blue_applications['value'].map(blue_applications => blue_applications.ACTIVITY_VOLUME);
             this.dataModel.HANG_TIME = blue_applications['value'].map(blue_applications => blue_applications.HANG_TIME);
             
-            
-            console.log()  
+              radarData = [
+                { data: this.dataModel.UXI, label: 'Series A' },
+                { data: this.dataModel.PERFORMANCE_INDEX, label: 'Series B' }
+            ];
+            /*console.log(radarData);**/ 
+            console.log(this.radarChartData)  
         },
         err => {
           console.log(err); 
