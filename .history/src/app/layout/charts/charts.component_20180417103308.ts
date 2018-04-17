@@ -66,8 +66,8 @@ export class ChartsComponent implements OnInit {
         'NO OF CRASHES'
     ];
 
-    private doughnutChartData: any = []; 
-   /** private doughnutChartData: number[] = [78, 99, 89, 99];  **/
+   /* private doughnutChartData = []; **/
+    private doughnutChartData: number[] = [78, 99, 89, 99];  
     private doughnutChartType: string = 'doughnut';
 
     // Radar
@@ -98,18 +98,18 @@ export class ChartsComponent implements OnInit {
             /** refresh every 5 seconds 
             this.interval = setInterval(() => { 
             this.loadBarChart();
-            }, 1000);
-
-           this.interval = setInterval(() => { 
-            this.loadDoughnut();
-           }, 5000); **/
+            }, 1000); **/
 
            /* this.interval = setInterval(() => { 
-            this.radarChartData = this.loadRadar();  
-           }, 3000); 
-           /**  this.loadBarChart(); **/
-            this.loadDoughnut(); 
-           /* this.radarChartData = this.loadRadar(); **/ 
+            this.loadDoughnut();
+           }, 1000); 
+
+            this.interval = setInterval(() => { 
+            this.loadRadar();   
+           }, 2000); **/
+            /*this.loadBarChart(); **/
+            /*this.loadDoughnut(); **/
+            this.radarChartData = this.loadRadar(); 
             
     }
 
@@ -117,7 +117,7 @@ export class ChartsComponent implements OnInit {
         this.subscription.unsubscribe();
       }
 
-    loadBarChart() : any[]{
+    loadBarChart(){
 
            this.blueprismService.getBlueprismData().subscribe(
             blue_applications => {
@@ -185,17 +185,14 @@ export class ChartsComponent implements OnInit {
           console.log(err);
         }
         ); 
-
-        return this.barChartData;
     }
 
-    loadDoughnut(): any[] {
+    loadDoughnut(){
         this.blueprismService.deviceInventoryData().subscribe(
             blue_applications => {
 
             this.dataModel.DEVICE_CPU_CORES = blue_applications['value'].map(blue_applications => blue_applications.DEVICE_CPU_CORES);
-            this.dataModel.AGENT_VERSION = blue_applications['value'].map(blue_applications => blue_applications.AGENT_VERSION); 
-            this.dataModel.CRASHES = blue_applications['value'].map(blue_applications => blue_applications.CRASHES);        
+            this.dataModel.AGENT_VERSION = blue_applications['value'].map(blue_applications => blue_applications.AGENT_VERSION);        
 
             console.log(this.dataModel.DEVICE_CPU_CORES);
            
@@ -205,7 +202,6 @@ export class ChartsComponent implements OnInit {
           console.log(err);
         }
         );  
-        return this.doughnutChartData = [0,0,0,0];
     }
 
     loadRadar() : any[] {
@@ -225,8 +221,9 @@ export class ChartsComponent implements OnInit {
             /*console.log(this.radar_uxi); **/
             
               radarData = [
-                { data: this.dataModel.UXI, label: 'Series A' },
-                { data: this.dataModel.PERFORMANCE_INDEX, label: 'Series B' }
+                { data: [adarChartData = [
+                    { data: [this.dataModel.UXI], label: 'Series A' },
+                { data: [28, 48, 40, 19, 96, 27, 100], label: 'Series B' }
             ];
             /*console.log(radarData);**/
             this.radarChartData = radarData;  
@@ -236,7 +233,10 @@ export class ChartsComponent implements OnInit {
           console.log(err);
         }
         );    
-        return this.radarChartData = [0,0,0,0,0,0,0];  
+        return this.radarChartData = [
+            { data: [this.dataModel.UXI], label: 'Series A' },
+            { data: [this.dataModel.PERFORMANCE_INDEX], label: 'Series B' }
+        ];  
     }
 
     getElements(arr: any[]){

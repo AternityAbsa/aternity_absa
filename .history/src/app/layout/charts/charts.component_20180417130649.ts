@@ -108,7 +108,7 @@ export class ChartsComponent implements OnInit {
             this.radarChartData = this.loadRadar();  
            }, 3000); 
            /**  this.loadBarChart(); **/
-            this.loadDoughnut(); 
+            this.loadDoughnut(); **/
            /* this.radarChartData = this.loadRadar(); **/ 
             
     }

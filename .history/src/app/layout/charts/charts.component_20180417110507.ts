@@ -98,18 +98,18 @@ export class ChartsComponent implements OnInit {
             /** refresh every 5 seconds 
             this.interval = setInterval(() => { 
             this.loadBarChart();
-            }, 1000);
-
-           this.interval = setInterval(() => { 
-            this.loadDoughnut();
-           }, 5000); **/
+            }, 1000); **/
 
            /* this.interval = setInterval(() => { 
+            this.loadDoughnut();
+           }, 1000); 
+
+            this.interval = setInterval(() => { 
             this.radarChartData = this.loadRadar();  
-           }, 3000); 
-           /**  this.loadBarChart(); **/
+           }, 2000); 
+            /*this.loadBarChart(); **/
             this.loadDoughnut(); 
-           /* this.radarChartData = this.loadRadar(); **/ 
+           /* this.radarChartData = this.loadRadar(); **/
             
     }
 
