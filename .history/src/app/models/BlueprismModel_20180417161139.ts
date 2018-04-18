@@ -35,7 +35,6 @@ export class BlueprismModel  {
     APPLICATION: string[] = [];
     ACTIVE_TIME: any = [];
     ACTIVITY_SCORE : number[] = [];
-    ACTIVITY_RESPONSE_AVG : number[] = [];
 
 
     set = new Set ([]);

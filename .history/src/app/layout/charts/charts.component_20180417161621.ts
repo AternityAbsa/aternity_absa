@@ -127,7 +127,6 @@ export class ChartsComponent implements OnInit{
            this.loadBarChart(); 
            this.loadDoughnut();
            this.radarChartData = this.loadRadar(); 
-           this.loadPie();
             
     } 
 
@@ -271,7 +270,7 @@ export class ChartsComponent implements OnInit{
             this.dataModel.HANG_TIME = blue_applications['value'].map(blue_applications => blue_applications.HANG_TIME);
 
             this.dataModel.APPLICATION = blue_applications['value'].map(blue_applications => blue_applications.APPLICATION);
-            this.appName = this.dataModel.APPLICATION;
+            this.app
             
             console.log(this.dataModel.APPLICATION);
         },

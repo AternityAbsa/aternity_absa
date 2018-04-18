@@ -31,7 +31,6 @@ export class ChartsComponent implements OnInit{
     dateString : Date;
     device_name = new  Set(['']); 
     deviceName : any;
-    appName : any;
     time_Frame : any;
     interval : any;
     subscription: Subscription;
@@ -92,18 +91,18 @@ export class ChartsComponent implements OnInit{
 
        /* private radarChartData: any; **/ 
      private radarChartData: any = []; 
-     private radarChartType: string = 'radar';
-
+    private radarChartType: string = 'radar';
      // Pie
      private pieChartLabels: string[] = [
-        'APPLICATION',
-        'ACTIVITY_SCORE',
-        'ACTIVE_TIME',
-        'ACTIVITY_VOLUME',
-        'ACTIVITY_RESPONSE_AVG'
+        'SERVING_DEVICE_NAME',
+        'VIRTUAL_MEMORY_UTIL_AVG',
+        'PHYSICAL_MEMORY_UTIL_AVG',
+        'CPU_UTILIZATION_AVG'
     ];
-    private pieChartData: number[] = [300, 500, 100, 250, 900, 30];
+    private pieChartData: number[] = [300, 500, 100, 250];
     private pieChartType: string = 'pie';
+
+
 
     constructor(private blueprismService: BlueprismService, private service : BlueprismServices, private dataLoad : DataLoadService,
     private dataModel : BlueprismModel) {
@@ -127,7 +126,6 @@ export class ChartsComponent implements OnInit{
            this.loadBarChart(); 
            this.loadDoughnut();
            this.radarChartData = this.loadRadar(); 
-           this.loadPie();
             
     } 
 
@@ -269,11 +267,9 @@ export class ChartsComponent implements OnInit{
             this.dataModel.PERFORMANCE_INDEX = blue_applications['value'].map(blue_applications => blue_applications.PERFORMANCE_INDEX);
             this.dataModel.ACTIVITY_VOLUME = blue_applications['value'].map(blue_applications => blue_applications.ACTIVITY_VOLUME);
             this.dataModel.HANG_TIME = blue_applications['value'].map(blue_applications => blue_applications.HANG_TIME);
-
-            this.dataModel.APPLICATION = blue_applications['value'].map(blue_applications => blue_applications.APPLICATION);
-            this.appName = this.dataModel.APPLICATION;
             
-            console.log(this.dataModel.APPLICATION);
+            
+            console.log()  
         },
         err => {
           console.log(err); 
@@ -284,7 +280,9 @@ export class ChartsComponent implements OnInit{
             { data: [9, 1, 5, 7,2 ,3, 10], label: 'Series B' }
             ];
 
+
     }
+
 
     getElements(arr: any[]){
         console.log("Checking");

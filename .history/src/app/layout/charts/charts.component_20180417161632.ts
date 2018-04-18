@@ -127,7 +127,6 @@ export class ChartsComponent implements OnInit{
            this.loadBarChart(); 
            this.loadDoughnut();
            this.radarChartData = this.loadRadar(); 
-           this.loadPie();
             
     } 
 
