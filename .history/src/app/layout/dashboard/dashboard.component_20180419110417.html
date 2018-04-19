@@ -1,0 +1,68 @@
+<div [@routerTransition]>
+    <h2 class="text-muted"> Worst And Best Performing Applications  <small> </small></h2>
+    <div class="row">
+        <div class="col-md-12">
+            <ngb-carousel>
+               <!-- <ng-template ngbSlide *ngFor="let slider of sliders">
+                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="30%">
+                    <div class="carousel-caption">
+                         <h3>{{slider.label}}</h3>
+                        <p>{{slider.text}}</p>                        
+                    </div> 
+                </ng-template> -->
+            </ngb-carousel>
+        </div>
+    </div>
+    <hr>
+   
+    <div style="margin: auto; max-width: 1000px; margin-top:50px">
+        <data-table id="films-grid"
+            headerTitle="Films"
+            [items]="films"
+            [itemCount]="filmCount"
+            (reload)="reloadFilms($event)"
+    
+            [limit]="8"
+            [sortBy]="'rating'"
+            [sortAsc]="false"
+    
+            [selectColumn]="true"
+            [multiSelect]="false"
+            [substituteRows]="false"
+            [expandableRows]="true"
+            [translations]="translations"
+            [indexColumnHeader]="'#'"
+            [selectOnRowClick]="true"
+            >
+            <ng-template #dataTableExpand let-item="item">
+                <div [textContent]="item.description" style="padding: 5px; color: gray"></div>
+            </ng-template>
+            <data-table-column
+                [property]="'title'"
+                [header]="'Title'"
+                [sortable]="true">
+            </data-table-column>
+            <data-table-column
+                [property]="'year'"
+                [header]="'Release year'"
+                [sortable]="true">
+            </data-table-column>
+            <data-table-column
+                [property]="'rating'"
+                [header]="'Rating'"
+                [sortable]="true"
+                [cellColors]="cellColor">
+            </data-table-column>
+            <data-table-column
+                [property]="'director'"
+                [header]="'Director'">
+            </data-table-column>
+        </data-table>
+        <div style="margin-top: 10px">
+            <b>Selected:</b>
+            <span *ngIf="filmsTable.selectedRow == null"><i>No item selected</i></span>
+            <span [textContent]="filmsTable.selectedRow && filmsTable.selectedRow.item.title"></span>
+        </div>
+    </div>
+
+</div>
