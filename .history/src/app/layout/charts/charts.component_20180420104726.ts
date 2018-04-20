@@ -275,7 +275,7 @@ export class ChartsComponent implements OnInit{
 
             this.dataModel.APPLICATION = blue_applications['value'].map(blue_applications => blue_applications.APPLICATION);
 
-            this.appName =  new Set (this.dataModel.APPLICATION);
+            this.appName =  new Set (this.dataModel.APPLICATION;
             
             console.log(this.dataModel.APPLICATION);
         },

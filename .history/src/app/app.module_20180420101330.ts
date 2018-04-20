@@ -39,7 +39,7 @@ export function createTranslateLoader(http: HttpClient) {
         }),
         AppRoutingModule
     ],
-    declarations: [AppComponent],
+    declarations: [AppComponent, WorstAndBestAppsComponent],
     providers: [
          AuthGuard, 
          BlueprismService,

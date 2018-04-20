@@ -15,6 +15,7 @@ import { BusinessAreaModel} from './models/business_area_model';
 import { BlueprismService} from './services/BlueprismService';
 import { DataLoadService } from './services/DataLoadService';
 import { BusinessService} from './services/business_area_service';
+import { WorstAndBestAppsComponent } from './';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -39,7 +40,7 @@ export function createTranslateLoader(http: HttpClient) {
         }),
         AppRoutingModule
     ],
-    declarations: [AppComponent],
+    declarations: [AppComponent, WorstAndBestAppsComponent],
     providers: [
          AuthGuard, 
          BlueprismService,
