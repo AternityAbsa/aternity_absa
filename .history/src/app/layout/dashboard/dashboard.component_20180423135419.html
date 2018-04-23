@@ -1,0 +1,122 @@
+<div [@routerTransition]>
+    <h2 class="text-muted"> Worst And Best Performing Applications  <small> </small></h2>
+    <div class="row">
+        <div class="col-md-12" >
+            <ngb-carousel>
+               <!-- <ng-template ngbSlide *ngFor="let slider of sliders">
+                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="30%">
+                    <div class="carousel-caption">
+                         <h3>{{slider.label}}</h3>
+                        <p>{{slider.text}}</p>                        
+                    </div> 
+                </ng-template> -->
+            </ngb-carousel>
+        </div>
+    </div>
+    <hr>
+   <!-- <div>
+        <li *ngFor="let d of data | async">{{d.activity}}</li>
+    </div> -->
+
+
+    <div class="example-container mat-elevation-z8">
+        <mat-table #table [dataSource]="dataSource">
+      
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+      <div>
+        <h4 class="text-muted"> Worst Users and applications <small> </small></h4>
+      </div>
+          <!-- Application Column -->
+          <ng-container matColumnDef="applications">
+            <mat-header-cell *matHeaderCellDef> Application </mat-header-cell>
+            <mat-cell *matCellDef="let application"> {{application.applications}} </mat-cell>
+          </ng-container>
+      
+          <!-- username Column -->
+          <ng-container matColumnDef="username">
+            <mat-header-cell *matHeaderCellDef> Username </mat-header-cell>
+            <mat-cell *matCellDef="let application"> {{application.username}} </mat-cell>
+          </ng-container>
+      
+          <!-- Activity Column -->
+          <ng-container matColumnDef="activity">
+            <mat-header-cell *matHeaderCellDef> UXI Score </mat-header-cell>
+            <mat-cell *matCellDef="let application"> {{application.activity}} </mat-cell>
+          </ng-container>
+
+          <!-- c;lient time Column -->
+          <ng-container matColumnDef="client_time">
+                <mat-header-cell *matHeaderCellDef> Client Time </mat-header-cell>
+                <mat-cell *matCellDef="let application"> {{application.client_time}} </mat-cell>
+          </ng-container>
+
+           <!-- c;lient time Column -->
+           <ng-container matColumnDef="client_time">
+                <mat-header-cell *matHeaderCellDef> Client Time </mat-header-cell>
+                <mat-cell *matCellDef="let application"> {{application.client_time}} </mat-cell>
+          </ng-container>
+          
+      
+          <!-- Expanded Content Column - The detail row is made up of this one column 
+          <ng-container matColumnDef="expandedDetail">
+            <mat-cell *matCellDef="let detail"> 
+              The symbol for {{detail.element.name}} is {{detail.element.symbol}}
+            </mat-cell>
+          </ng-container>  -->
+      
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row> 
+        <!-- matRipple 
+        class="element-row" 
+        [class.expanded]="expandedElement == row"
+        (click)="expandedElement = row"> 
+          <mat-row *matRowDef="let row; columns: ['expandedDetail']; when: isExpansionDetailRow"
+                  [@detailExpand]="row.element == expandedElement ? 'expanded' : 'collapsed'"
+                  style="overflow: hidden"> 
+          </mat-row> -->
+        </mat-table>
+      </div>
+      
+      
+      <!-- Copyright 2017 Google Inc. All Rights Reserved.
+          Use of this source code is governed by an MIT-style license that
+          can be found in the LICENSE file at http://angular.io/license -->
+
+
+
+    <!--<hr />
+    <ngb-alert [type]="alert.type" (close)="closeAlert(alert)" *ngFor="let alert of alerts">{{ alert.message }}</ngb-alert>
+    <hr /> -->
+    <div class="row">
+        <div class="col-lg-8">
+             <div class="card card-default">
+                <!--<div class="card-header">
+                   <i class="fa fa-clock-o fa-fw"></i> Responsive Timeline 
+                </div> -->
+                <!-- /.card-header -->
+                <app-timeline></app-timeline>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.col-lg-8 -->
+    <br>
+        <div class="col-lg-3">
+            <div class="card card-default mb-3">
+                <div class="card-header">
+                    <i class="fa fa-bell fa-fw"></i> 
+                    Notifications 
+                </div>
+                <!-- /.card-header -->
+                <app-notification></app-notification>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+            <app-chat></app-chat>
+            <!-- /.card .chat-card -->
+        </div>
+        <!-- /.col-lg-4 -->
+    </div>
+</div>

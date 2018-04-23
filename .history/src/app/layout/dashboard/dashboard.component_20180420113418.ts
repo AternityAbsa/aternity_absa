@@ -1,0 +1,75 @@
+import { Component, OnInit } from '@angular/core';
+import { routerTransition } from '../../router.animations';
+import { DataSource } from '@angular/cdk/collections';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+
+@Component({
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss'],
+    animations: [
+        trigger('detailExpand', [
+          state('collapsed', style({ height: '0px', minHeight: '0', visibility: 'hidden' })),
+          state('expanded', style({ height: '*', visibility: 'visible' })),
+          transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+        ]),
+      ],
+})
+export class DashboardComponent implements OnInit {
+    public alerts: Array<any> = [];
+    public sliders: Array<any> = [];
+    public aternity_activities;
+
+    constructor() {
+        
+        this.sliders.push(
+            {
+                imagePath: 'assets/images/absa_logo.jpg',
+                label: 'Absa Aternity',
+                text:
+                     '' 
+            }
+           /*{
+                imagePath: 'assets/images/slider2.jpg',
+                label: 'Second slide label',
+                text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+            },
+            {
+                imagePath: 'assets/images/slider3.jpg',
+                label: 'Third slide label',
+                text:
+                    'Praesent commodo cursus magna, vel scelerisque nisl consectetur.'
+            } **/
+        );
+
+       /* this.aternity_activities = aternitApi.getUsers(); */
+
+        this.alerts.push(
+            {
+                id: 1,
+                type: 'success',
+               /* message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
+                consectetur velit culpa molestias dignissimos
+                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum` */
+            },
+            {
+                id: 2,
+                type: 'warning',
+               /* message: `Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Voluptates est animi quibusdam praesentium quam, et perspiciatis,
+                consectetur velit culpa molestias dignissimos
+                voluptatum veritatis quod aliquam! Rerum placeat necessitatibus, vitae dolorum` */
+            }
+        );
+    }
+
+    ngOnInit() {}
+
+    public closeAlert(alert: any) {
+        const index: number = this.alerts.indexOf(alert);
+        this.alerts.splice(index, 1);
+    }
+}
