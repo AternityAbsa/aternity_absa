@@ -161,7 +161,7 @@ export class ChartsComponent implements OnInit{
             this.deviceName = new Set (this.device_name); 
             this.time_Frame = new Set(this.timeframe);
 
-            console.log(this.deviceName);
+            console.log(this.time_Frame);
 
              this.barChartData = [
                 { data: this.dataModel.CPU_UTILIZATION_AVG, label: 'CPU Avg' },
@@ -306,10 +306,10 @@ export class ChartsComponent implements OnInit{
             this.radar_crashes = this.dataModel.PERFORMANCE_INDEX;
             
               this.lineChartData = [ 
-               { data: [65, 59, 80, 81, 56, 55, 80], label: 'VIRTUAL_MEMORY_UTIL_AVG' },
-              { data: [28, 48, 40, 19, 86, 27, 90], label: 'PHYSICAL_MEMORY_UTIL_AVG' },
-              { data: [69, 48, 77, 15, 100, 27, 70], label: 'CPU_UTILIZATION_AVG'},
-              { data: [70, 65, 77, 15, 95, 59, 80], label: 'SERVING_DEVICE_NAME'}];
+                { data: [65, 59, 80, 18, 0, 0, 0], label: 'VIRTUAL_MEMORY_UTIL_AVG' },
+                { data: [28, 48, 40, 4, 0, 0, 0], label: 'PHYSICAL_MEMORY_UTIL_AVG' },
+                { data: [69, 48, 77,8, 0, 0, 0], label: 'CPU_UTILIZATION_AVG'},
+                { data: [70, 65, 77, 15, 0, 0, 0], label: 'SERVING_DEVICE_NAME'}];
             //   { data: this.dataModel.UXI, label: '' },
             //   { data: this.dataModel.UXI_WEIGHT, label: '' },
             //   { data: this.dataModel.PERFORMANCE_INDEX, label: ''},
@@ -346,12 +346,13 @@ export class ChartsComponent implements OnInit{
     private polarAreaChartType: string = 'polarArea';
 
     // lineChart
-    private lineChartData: Array<any> = [];
-    //     { data: [65, 59, 80, 81, 56, 55, 80], label: 'VIRTUAL_MEMORY_UTIL_AVG' },
-    //     { data: [28, 48, 40, 19, 86, 27, 90], label: 'PHYSICAL_MEMORY_UTIL_AVG' },
-    //     { data: [69, 48, 77, 15, 100, 27, 70], label: 'CPU_UTILIZATION_AVG'},
-    //     { data: [70, 65, 77, 15, 95, 59, 80], label: 'SERVING_DEVICE_NAME'} 
-    //  ];
+    private lineChartData: Array<any> = [
+        { data: [65, 59, 80, 81, 0, 0, 0], label: 'VIRTUAL_MEMORY_UTIL_AVG' },
+        { data: [28, 48, 40, 0, 0, 0], label: 'PHYSICAL_MEMORY_UTIL_AVG' },
+        { data: [69, 48, 77, 15,0, 0, 0], label: 'CPU_UTILIZATION_AVG'},
+        { data: [70, 65, 77, 15, 0, 0, 0], label: 'SERVING_DEVICE_NAME'} 
+     ];
+
     private lineChartLabels: Array<any> = [
         'January',
         'February',
@@ -455,6 +456,12 @@ export class ChartsComponent implements OnInit{
          * so one way around it, is to clone the data, change it and then
          * assign it;
          */
+    }
+
+    private convertDate(date) {
+        var eventDate = new Date(''+date+':00 UTC');
+        console.log(eventDate);
+
     }
 
 }

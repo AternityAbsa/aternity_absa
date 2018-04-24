@@ -62,7 +62,6 @@ export class DashboardComponent{
   } 
 }
 
-
 export interface Application {
   applications: string;
   username: string;
@@ -71,10 +70,10 @@ export interface Application {
   device_model: string;
 }
   const data: Application[] = [
-       { applications: 'A', username: 'A', activity: 'A', client_time: 1, device_model: 'x' },
-       { applications: 'B', username: 'B', activity: 'B', client_time: 2, device_model: 'x1'},
-       { applications: 'C', username: 'C', activity: 'C', client_time: 3, device_model: 'x11'},
-       { applications: 'D', username: 'D', activity: 'D', client_time: 4, device_model: 'x111'}
+       { applications: 'Microsoft Outlook', username: 'ablo101', activity: 'Open Mail', client_time: 0.349, device_model: 'ThinkCentre M73' },
+       { applications: 'Microsoft Outlook', username: 'testuser', activity: 'Preview Mail', client_time: 0.283, device_model: 'ThinkPad T460'},
+       { applications: 'AZIWE', username: 'testuser', activity: 'Other Pages', client_time: 0.14, device_model: 'ThinkCentre M73'},
+       { applications: 'Microsoft Excel', username: 'testuser', activity: 'Save', client_time: 0.031, device_model: 'ThinkPad T460'}
   ];
 
  /*const data: Element[] = [
