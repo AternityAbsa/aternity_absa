@@ -1,5 +1,5 @@
 <div [@routerTransition]>
-    <app-page-header [heading]="'Application Monitoring'"></app-page-header>
+    <app-page-header [heading]="'Absa Application Monitoring'"></app-page-header>
     <div class="row">
         <div class="col col-sm-6">
             <div class="card mb-3">
@@ -64,7 +64,7 @@
         <div class="col col-sm-6">
             <div class="card mb-3">
                 <div class="card-header">
-                    Blueprism Doughnut Chart
+                     Doughnut Chart
                 </div>
                  <!-- Timeframe
                  <div class="col col-sm-5"> 
@@ -87,7 +87,7 @@
         <div class="col col-sm-6">
             <div class="card mb-3">
                 <div class="card-header">
-                  Blueprism Radar Chart
+                   Radar Chart
                 </div>
                 <div class="card-body">
                     <canvas baseChart height="180px" [datasets]="radarChartData" [labels]="radarChartLabels" [chartType]="radarChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
@@ -98,7 +98,7 @@
         <div class="col col-sm-6">
             <div class="card mb-3">
                 <div class="card-header">
-                 Blueprism Pie Chart
+                  Pie Chart
                 </div>
                 <div class="card-body">
                     <canvas baseChart height="150px" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="pieChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
@@ -111,7 +111,7 @@
         <div class="col col-sm-6">
             <div class="card mb-3">
                 <div class="card-header">
-                    Blueprism Polar Area Chart
+                     Polar Area Chart
                 </div>
                 <div class="card-body">
                     <canvas baseChart height="130px" [data]="polarAreaChartData" [labels]="polarAreaChartLabels" [legend]="polarAreaLegend" [chartType]="polarAreaChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
@@ -122,7 +122,7 @@
         <div class="col col-sm-6">
             <div class="card mb-3">
                 <div class="card-header">
-                    Blueprism Line Chart
+                    Line Chart
                 </div>
                 <div class="card-body">
                     <canvas baseChart height="160" [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType" (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)">
