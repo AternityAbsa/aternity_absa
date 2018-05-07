@@ -5,7 +5,7 @@ import { ChartsComponent } from './charts.component';
 const routes: Routes = [
     {
         path: '',
-        component: ChartsComponent
+        component: ChartsComponent, DashboardComponent
 
     }
 ];
